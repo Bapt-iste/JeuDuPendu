@@ -10,43 +10,67 @@ namespace JeuDuPendu
     {
         static void Main(string[] args)
         {
-            //List<string> mots = new List<string>();
-            Console.WriteLine("Choisissez un mot :");
-            string wordToGuessTmp = Console.ReadLine();
-            char[] wordToGuess = new char[wordToGuessTmp.Length];
-            char[] wordGuessed = new char[wordToGuessTmp.Length];
-            char userInput;
-            Console.Clear();
+            bool keepPlaying = true;
 
-            for (int i = 0; i < wordToGuessTmp.Length; i++)
+            while (keepPlaying)
             {
-                wordToGuess[i] = wordToGuessTmp[i];
-                wordGuessed[i] = (char)35;
-            }
+                /*
+                 * User select a word to guess.
+                 * This word is a string
+                 * Then it converted into two array of char,
+                 *  one with the word, one empty that will be filled with user input.
+                 */
+                Console.Clear();
+                Console.WriteLine("Choisissez un mot :");
+                //string strWordToGuess = Console.ReadLine();
+                string strWordToGuess = Fonction.ChoisirMot();
+                char[] charWordToGuess = new char[strWordToGuess.Length];
+                char[] charWordGuessed = new char[strWordToGuess.Length];
+                char userInput;
+                int life = 10;
+                bool getWrong;
 
-            while (!(wordToGuess.Equals(wordGuessed)))
-            {
-                Console.WriteLine("\n*********************");
-                Console.WriteLine("Choisissez une lettre : ");
-                userInput = Convert.ToChar(Console.ReadLine());
-                Console.Write("Ton mot : ");
-                for(int i = 0; i < wordToGuessTmp.Length; i++)
+                Console.Clear();
+
+                //Fill charWordGuessed with a correct number of '#'
+                for (int i = 0; i < strWordToGuess.Length; i++)
                 {
-                    if (wordToGuess[i].Equals(userInput))
+                    charWordToGuess[i] = strWordToGuess[i];
+                    charWordGuessed[i] = (char)35;
+                }
+
+
+                //Init userInput for the first loop
+                userInput = '#';
+                Fonction.TestCaractere(charWordToGuess, charWordGuessed, userInput);
+
+                while (!Fonction.TestGagne(charWordGuessed, charWordToGuess) && life != 0)
+                {
+                    userInput = Fonction.GetCaractere();
+                    Console.WriteLine("\n");
+
+                   getWrong = Fonction.TestCaractere(charWordToGuess, charWordGuessed, userInput);
+
+                    if (getWrong)
                     {
-                        wordGuessed[i] = userInput;
+                        life -= 1;
+                    }
+                    
+                    if (life < 2)
+                    {
+                        Console.Write("\nIl vous reste {0} vie.", life);
                     }
                     else
                     {
-                        
+                        Console.Write("\nIl vous reste {0} vies.", life);
                     }
-                    Console.Write(wordGuessed[i]);
                 }
 
-                
+                Fonction.EndMessage(life);
+                Console.WriteLine("The word was {0}", strWordToGuess); 
+                keepPlaying = Fonction.KeepPlaying();
 
             }
-
         }
     }
 }
