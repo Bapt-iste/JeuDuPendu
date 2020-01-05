@@ -5,19 +5,10 @@ __ /!\ it's still under development /!\ __
 
 ## How it work (or should work)
 
-Choose a word that someone else will have to guess. 
+Guess the word, it's the purpose of this game. 
 
-Then, the other person (or yourself if you're alone) has to guess the word. 
-
-Enter a letter and press enter. (more than one will crash the program)
-
-To do : 
-  - Ignore the case
-  - Verify if the word is succesfully guessed and end the game
-  - Put the code in function to do it properly
-  - Caught exception when multiple letter are in the buffer
-  - Maybe write it all in English
-  - Comment more
-  
+TODO : 
+  - Add ascii art for the Hanged man
+  - More comment? 
   
  Btw, have a great day !  
