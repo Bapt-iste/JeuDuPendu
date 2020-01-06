@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +21,10 @@ namespace JeuDuPendu
                  *  one with the word, one empty that will be filled with user input.
                  */
                 Console.Clear();
-                Console.WriteLine("Choisissez un mot :");
-                //string strWordToGuess = Console.ReadLine();
                 string strWordToGuess = Fonction.ChoisirMot();
                 char[] charWordToGuess = new char[strWordToGuess.Length];
                 char[] charWordGuessed = new char[strWordToGuess.Length];
+                char[] charWrongLetter = new char [10]; 
                 char userInput;
                 int life = 10;
                 bool getWrong;
@@ -39,35 +38,31 @@ namespace JeuDuPendu
                     charWordGuessed[i] = (char)35;
                 }
 
+                for (int i = 0; i < 10; i++)
+                {
+                  charWrongLetter[i] = (char)32;
+                }
 
                 //Init userInput for the first loop
-                userInput = '#';
-                Fonction.TestCaractere(charWordToGuess, charWordGuessed, userInput);
+                userInput = (char)32;
+                Fonction.TestCharactere(charWordToGuess, charWordGuessed, userInput, charWrongLetter, life);
 
                 while (!Fonction.TestGagne(charWordGuessed, charWordToGuess) && life != 0)
                 {
-                    userInput = Fonction.GetCaractere();
+                    userInput = Fonction.GetCharactere();
                     Console.WriteLine("\n");
 
-                   getWrong = Fonction.TestCaractere(charWordToGuess, charWordGuessed, userInput);
+                   getWrong = Fonction.TestCharactere(charWordToGuess, charWordGuessed, userInput, charWrongLetter, life);
 
                     if (getWrong)
                     {
                         life -= 1;
                     }
                     
-                    if (life < 2)
-                    {
-                        Console.Write("\nIl vous reste {0} vie.", life);
-                    }
-                    else
-                    {
-                        Console.Write("\nIl vous reste {0} vies.", life);
-                    }
+                    Console.Write("\n{0} chance left.", life);
                 }
-
                 Fonction.EndMessage(life);
-                Console.WriteLine("The word was {0}", strWordToGuess); 
+                Console.WriteLine("\nThe word was \"{0}\"", strWordToGuess); 
                 keepPlaying = Fonction.KeepPlaying();
 
             }

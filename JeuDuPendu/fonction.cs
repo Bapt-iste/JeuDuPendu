@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,24 +23,40 @@ namespace JeuDuPendu
             return isEqual;
         }
 
-        public static bool TestCaractere(char[] charWordToGuess, char[] charWordGuessed, char userInput)
+        public static bool TestCharactere(char[] charWordToGuess, char[] charWordGuessed, char userInput, char[] charWrongLetter, int life)
         {
             bool getWrong = true;
+
             Console.Clear();
-            Console.Write("Le mot à deviner : ");
+
+            Console.Write("Word to guess : ");
 
             for (int i = 0; i < charWordToGuess.Length; i++)
             {
                 if (Char.ToUpper(charWordToGuess[i]).Equals(Char.ToUpper(userInput)))
                 {
-                    charWordGuessed[i] = userInput;
-                    getWrong = false;
+                  charWordGuessed[i] = userInput;
+                  getWrong = false;
                 }
                 else
                 {
-
+                  
                 }
+
                 Console.Write(charWordGuessed[i]);
+
+            }
+
+            if (getWrong)
+            {
+              charWrongLetter[life-1] = userInput;
+            }
+
+            Console.Write("\nWrong letters : ");
+
+            for (int i = 9; i > 0; i--)
+            {
+                Console.Write(charWrongLetter[i]);
             }
 
             return getWrong;
@@ -65,9 +81,9 @@ namespace JeuDuPendu
             return keepPlaying;
         }
 
-        public static char GetCaractere()
+        public static char GetCharactere()
         {
-            Console.WriteLine("\nProposez une lettre : ");
+            Console.WriteLine("\nSubmit a letter : ");
             char userInput = Console.ReadKey().KeyChar;
             return userInput;
         }
