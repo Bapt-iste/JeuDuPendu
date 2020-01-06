@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace JeuDuPendu
 {
@@ -33,6 +34,7 @@ namespace JeuDuPendu
 
             for (int i = 0; i < charWordToGuess.Length; i++)
             {
+                //Compare the uppercase of user input and all letter of the word to guess
                 if (Char.ToUpper(charWordToGuess[i]).Equals(Char.ToUpper(userInput)))
                 {
                   charWordGuessed[i] = userInput;
@@ -47,14 +49,26 @@ namespace JeuDuPendu
 
             }
 
+            //Verify if the letter was already tried
+            // If yes, user don't loose life
+            for (int i = 0; i < charWrongLetter.Length -1; i++)
+            {
+              if (charWrongLetter[i] == userInput)
+              {
+                getWrong = false;
+              }
+            }
+
+            //Store the wrong letter
             if (getWrong)
             {
               charWrongLetter[life-1] = userInput;
             }
+            
 
+            //Print all wrong letter tried
             Console.Write("\nWrong letters : ");
-
-            for (int i = 9; i > 0; i--)
+            for (int i = charWrongLetter.Length-1; i > 0; i--)
             {
                 Console.Write(charWrongLetter[i]);
             }
@@ -88,10 +102,14 @@ namespace JeuDuPendu
             return userInput;
         }
 
-        public static string ChoisirMot()
+        public static string ChoisirMot(int max)
         {
             Random rnd = new Random();
+            long index = rnd.Next(0, max);
 
+            string[] mot = File.ReadAllLines("liste_francais.txt");
+
+          /*
             List<string> mots = new List<string>();
             mots.Add("un");
             mots.Add("deux");
@@ -113,8 +131,9 @@ namespace JeuDuPendu
             mots.Add("regime");
             mots.Add("affirmer");
             mots.Add("arme");
+          */
 
-            return mots[rnd.Next(0,19)];
+            return mot[index-1];
         }
 
         public static void EndMessage (int life)
@@ -128,6 +147,34 @@ namespace JeuDuPendu
             {
                 Console.Write("\nCongrats !");
                 }
+        }
+
+
+        public static int CountLines(string fileName)
+        {
+            char[] buffer = new char[32 * 1024]; //lit 32K char à chaque fois
+            System.IO.TextReader reader;
+            int total = 1; //tout fichier contient au moins une ligne
+            int read;
+            if (System.IO.File.Exists(fileName))
+            {
+                reader = System.IO.File.OpenText(fileName);
+                while ((read=reader.Read(buffer, 0, buffer.Length)) > 0)
+              {
+                  for (int i = 0; i < read; i++)
+                    {
+                        if (buffer[i] == '\n')
+                        {
+                            total++;
+                        }
+                    }
+                 }
+                //nettoyage des variables
+                reader.Close();
+                reader.Dispose();
+                reader = null;
+            }
+            return total;
         }
     
     }
