@@ -21,13 +21,15 @@ namespace JeuDuPendu
                  *  one with the word, one empty that will be filled with user input.
                  */
                 Console.Clear();
-                string strWordToGuess = Fonction.ChoisirMot();
+                int nbLine = Fonction.CountLines("liste_francais.txt");
+                string strWordToGuess = Fonction.ChoisirMot(nbLine);
                 char[] charWordToGuess = new char[strWordToGuess.Length];
                 char[] charWordGuessed = new char[strWordToGuess.Length];
                 char[] charWrongLetter = new char [10]; 
                 char userInput;
                 int life = 10;
                 bool getWrong;
+
 
                 Console.Clear();
 
