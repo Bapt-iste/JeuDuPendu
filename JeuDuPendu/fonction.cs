@@ -109,30 +109,6 @@ namespace JeuDuPendu
 
             string[] mot = File.ReadAllLines("liste_francais.txt");
 
-          /*
-            List<string> mots = new List<string>();
-            mots.Add("un");
-            mots.Add("deux");
-            mots.Add("cinq");
-            mots.Add("rouge");
-            mots.Add("membre");
-            mots.Add("conseil");
-            mots.Add("donner");
-            mots.Add("reponse");
-            mots.Add("etat");
-            mots.Add("son");
-            mots.Add("armement");
-            mots.Add("peu");
-            mots.Add("apres");
-            mots.Add("vacances");
-            mots.Add("annonce");
-            mots.Add("mercredi");
-            mots.Add("evident");
-            mots.Add("regime");
-            mots.Add("affirmer");
-            mots.Add("arme");
-          */
-
             return mot[index-1];
         }
 
@@ -255,9 +231,9 @@ namespace JeuDuPendu
                         +"__/\\__";
 
             hangMan[1] = "  /----\\\n"
-                        +"  |    |     Derniere chance,\n"
+                        +"  |    |     Last chance,\n"
                         +"  |    o\n"
-                        +"  |   -|-     Apres c'est finit\n"
+                        +"  |   -|-     Then it's over ! \n"
                         +"  |   / \\\n"
                         +"  |\n"
                         +"__/\\__";
