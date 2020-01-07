@@ -51,6 +51,8 @@ namespace JeuDuPendu
 
                 while (!Fonction.TestGagne(charWordGuessed, charWordToGuess) && life != 0)
                 {
+                  Console.WriteLine();
+                    Fonction.ShowHangMan(life);
                     userInput = Fonction.GetCharactere();
                     Console.WriteLine("\n");
 
