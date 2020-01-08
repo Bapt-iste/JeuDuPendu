@@ -18,7 +18,7 @@ namespace JeuDuPendu
                 {
                     isEqual = false;
                 }
-                
+
             }
 
             return isEqual;
@@ -37,12 +37,12 @@ namespace JeuDuPendu
                 //Compare the uppercase of user input and all letter of the word to guess
                 if (Char.ToUpper(charWordToGuess[i]).Equals(Char.ToUpper(userInput)))
                 {
-                  charWordGuessed[i] = userInput;
-                  getWrong = false;
+                    charWordGuessed[i] = userInput;
+                    getWrong = false;
                 }
                 else
                 {
-                  
+
                 }
 
                 Console.Write(charWordGuessed[i]);
@@ -51,24 +51,23 @@ namespace JeuDuPendu
 
             //Verify if the letter was already tried
             // If yes, user don't loose life
-            for (int i = 0; i < charWrongLetter.Length -1; i++)
+            for (int i = 0; i < charWrongLetter.Length - 1; i++)
             {
-              if (charWrongLetter[i] == userInput)
-              {
-                getWrong = false;
-              }
+                if (charWrongLetter[i] == userInput)
+                {
+                    getWrong = false;
+                }
             }
 
             //Store the wrong letter
             if (getWrong)
             {
-              charWrongLetter[life-1] = userInput;
+                charWrongLetter[life - 1] = userInput;
             }
-            
 
             //Print all wrong letter tried
             Console.Write("\nWrong letters : ");
-            for (int i = charWrongLetter.Length-1; i > 0; i--)
+            for (int i = charWrongLetter.Length - 1; i > 0; i--)
             {
                 Console.Write(charWrongLetter[i]);
             }
@@ -109,10 +108,10 @@ namespace JeuDuPendu
 
             string[] mot = File.ReadAllLines("liste_francais.txt");
 
-            return mot[index-1];
+            return mot[index - 1];
         }
 
-        public static void EndMessage (int life)
+        public static void EndMessage(int life)
         {
             Console.Clear();
             if (!(life != 0))
@@ -123,7 +122,7 @@ namespace JeuDuPendu
             else
             {
                 Console.Write("\nCongrats !");
-                }
+            }
         }
 
 
@@ -136,16 +135,16 @@ namespace JeuDuPendu
             if (System.IO.File.Exists(fileName))
             {
                 reader = System.IO.File.OpenText(fileName);
-                while ((read=reader.Read(buffer, 0, buffer.Length)) > 0)
-              {
-                  for (int i = 0; i < read; i++)
+                while ((read = reader.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    for (int i = 0; i < read; i++)
                     {
                         if (buffer[i] == '\n')
                         {
                             total++;
                         }
                     }
-                 }
+                }
                 //nettoyage des variables
                 reader.Close();
                 reader.Dispose();
@@ -156,98 +155,98 @@ namespace JeuDuPendu
 
         public static void ShowHangMan(int i)
         {
-            string [] hangMan = new string [11];
+            string[] hangMan = new string[11];
 
             hangMan[10] = "\n"
-                        +"\n"
-                        +"\n"
-                        +"\n"
-                        +"\n"
-                        +"\n"
-                        +"\n";
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n";
 
             hangMan[9] = "\n"
-                        +"\n"
-                        +"\n"
-                        +"\n"
-                        +"\n"
-                        +"\n"
-                        +"__/\\__";
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "__/\\__";
 
             hangMan[8] = "  /\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"__/\\__";
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "__/\\__";
 
             hangMan[7] = "  /----\\\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"__/\\__";
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "__/\\__";
 
             hangMan[6] = "  /----\\\n"
-                        +"  |    |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"__/\\__";
+                        + "  |    |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "__/\\__";
 
             hangMan[5] = "  /----\\\n"
-                        +"  |    |\n"
-                        +"  |    o\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"__/\\__";
+                        + "  |    |\n"
+                        + "  |    o\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "__/\\__";
 
             hangMan[4] = "  /----\\\n"
-                        +"  |    |\n"
-                        +"  |    o\n"
-                        +"  |    |\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"__/\\__";
+                        + "  |    |\n"
+                        + "  |    o\n"
+                        + "  |    |\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "__/\\__";
 
             hangMan[3] = "  /----\\\n"
-                        +"  |    |\n"
-                        +"  |    o\n"
-                        +"  |   -|-\n"
-                        +"  |\n"
-                        +"  |\n"
-                        +"__/\\__";
+                        + "  |    |\n"
+                        + "  |    o\n"
+                        + "  |   -|-\n"
+                        + "  |\n"
+                        + "  |\n"
+                        + "__/\\__";
 
             hangMan[2] = "  /----\\\n"
-                        +"  |    |\n"
-                        +"  |    o\n"
-                        +"  |   -|-\n"
-                        +"  |   / \\\n"
-                        +"  |\n"
-                        +"__/\\__";
+                        + "  |    |\n"
+                        + "  |    o\n"
+                        + "  |   -|-\n"
+                        + "  |   / \\\n"
+                        + "  |\n"
+                        + "__/\\__";
 
             hangMan[1] = "  /----\\\n"
-                        +"  |    |     Last chance,\n"
-                        +"  |    o\n"
-                        +"  |   -|-     Then it's over ! \n"
-                        +"  |   / \\\n"
-                        +"  |\n"
-                        +"__/\\__";
+                        + "  |    |     Last chance,\n"
+                        + "  |    o\n"
+                        + "  |   -|-     Then it's over ! \n"
+                        + "  |   / \\\n"
+                        + "  |\n"
+                        + "__/\\__";
 
             hangMan[0] = "  /---\\       _                               \n"
-                        +"  |    |     | |                              \n"
-                        +"  |    o     | |     ___   ___  ___  ___ _ __ \n"
-                        +"  |   -|-    | |    / _ \\ / _ \\/ __|/ _ \\ '__|\n"
-                        +"  |   / \\    | |___| (_) | (_) \\__ \\  __/ |   \n"
-                        +"  |          \\_____/\\___/ \\___/|___/\\___|_|    \n"
-                        +"__/\\__";
+                        + "  |    |     | |                              \n"
+                        + "  |    o     | |     ___   ___  ___  ___ _ __ \n"
+                        + "  |   -|-    | |    / _ \\ / _ \\/ __|/ _ \\ '__|\n"
+                        + "  |   / \\    | |___| (_) | (_) \\__ \\  __/ |   \n"
+                        + "  |          \\_____/\\___/ \\___/|___/\\___|_|    \n"
+                        + "__/\\__";
 
             Console.WriteLine(hangMan[i]);
         }
-    
+
     }
 }

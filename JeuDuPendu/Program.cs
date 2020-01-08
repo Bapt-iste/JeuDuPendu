@@ -25,11 +25,10 @@ namespace JeuDuPendu
                 string strWordToGuess = Fonction.ChoisirMot(nbLine);
                 char[] charWordToGuess = new char[strWordToGuess.Length];
                 char[] charWordGuessed = new char[strWordToGuess.Length];
-                char[] charWrongLetter = new char [26]; 
+                char[] charWrongLetter = new char[26];
                 char userInput;
                 int life = 10;
                 bool getWrong;
-
 
                 Console.Clear();
 
@@ -40,9 +39,9 @@ namespace JeuDuPendu
                     charWordGuessed[i] = (char)35;
                 }
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 26; i++)
                 {
-                  charWrongLetter[i] = (char)32;
+                    charWrongLetter[i] = (char)32;
                 }
 
                 //Init userInput for the first loop
@@ -51,22 +50,22 @@ namespace JeuDuPendu
 
                 while (!Fonction.TestGagne(charWordGuessed, charWordToGuess) && life != 0)
                 {
-                  Console.WriteLine();
+                    Console.WriteLine();
                     Fonction.ShowHangMan(life);
                     userInput = Fonction.GetCharactere();
                     Console.WriteLine("\n");
 
-                   getWrong = Fonction.TestCharactere(charWordToGuess, charWordGuessed, userInput, charWrongLetter, life);
+                    getWrong = Fonction.TestCharactere(charWordToGuess, charWordGuessed, userInput, charWrongLetter, life);
 
                     if (getWrong)
                     {
                         life -= 1;
                     }
-                    
+
                     Console.Write("\n{0} chance left.", life);
                 }
                 Fonction.EndMessage(life);
-                Console.WriteLine("\nThe word was \"{0}\"", strWordToGuess); 
+                Console.WriteLine("\nThe word was \"{0}\"", strWordToGuess);
                 keepPlaying = Fonction.KeepPlaying();
 
             }
