@@ -25,7 +25,7 @@ namespace JeuDuPendu
                 string strWordToGuess = Fonction.ChoisirMot(nbLine);
                 char[] charWordToGuess = new char[strWordToGuess.Length];
                 char[] charWordGuessed = new char[strWordToGuess.Length];
-                char[] charWrongLetter = new char [10]; 
+                char[] charWrongLetter = new char [26]; 
                 char userInput;
                 int life = 10;
                 bool getWrong;
